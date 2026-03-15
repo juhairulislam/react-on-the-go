@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Country.css'
 
 const Country = ({country}) => {
 
+    const [visited, setVisited] = useState(false) ;
+
     const handlerEvent = ()=>{
-        console.log('btn clicked')
+       if(visited){
+         setVisited(false) ;
+       }else{
+        setVisited(true)
+       }
     }
     return (
         <div className='country'>
@@ -13,7 +19,7 @@ const Country = ({country}) => {
             <p>Population: {country.population.population}</p>
             <p>Capital: {country.capital.capital}</p>
             <p>Area: {country.area.area} km^2 : {country.area.area > 30000? 'Big Country' : 'Samll Country'}</p>
-            <button onClick={handlerEvent}>Visited</button>
+            <button className={`${visited? 'country-visited' : 'country-non-visited'}`} onClick={handlerEvent}>{visited? 'Visited': 'Not Visited'}</button>
             
         </div>
     );
